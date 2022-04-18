@@ -17,11 +17,8 @@ namespace BookStore
                 if (!sql.Books.Any(b => b.Id == id)) return;
                 Book book = sql.Books.SingleOrDefault(b => b.Id == id);
                 sql.Remove(book);
-                using (AppDbContext sql2 = new AppDbContext())
-                {
-                    BookBuy buy = new BookBuy { BookId = id };
-                    sql2.Add(buy);
-                }
+                 BookBuy buy = new BookBuy { BookId = id };
+                 sql.Add(buy);
                 sql.SaveChanges();
 
             }
@@ -37,5 +34,6 @@ namespace BookStore
                 }
             }
         }
+        
     }
 }
